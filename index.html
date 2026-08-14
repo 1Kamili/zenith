@@ -81,6 +81,50 @@
     --success:#2F8F5C; --danger:#B5473F; --accent-contrast:#FAFAFA;
   }
 
+  html[data-theme="forest-study"][data-mode="dark"]{
+    --bg:#10160F; --surface:#181F16; --surface-2:#20281C; --border:#2C3626;
+    --text:#EAF0E5; --text-muted:#93A08C; --accent:#6FAF6E; --accent-2:#9BCB82;
+    --success:#6FAF6E; --danger:#D97E6B; --accent-contrast:#0B1409;
+  }
+  html[data-theme="forest-study"][data-mode="light"]{
+    --bg:#F3F6EF; --surface:#FFFFFF; --surface-2:#E9EFE1; --border:#D6E0C9;
+    --text:#1B2417; --text-muted:#5E6B55; --accent:#3F7A3E; --accent-2:#6B9A4F;
+    --success:#3F7A3E; --danger:#B8543C; --accent-contrast:#F7FBF3;
+  }
+
+  html[data-theme="sunset-desk"][data-mode="dark"]{
+    --bg:#1A120D; --surface:#241811; --surface-2:#2E1F15; --border:#3D2A1C;
+    --text:#F7EBE1; --text-muted:#B39A85; --accent:#E28449; --accent-2:#F0B074;
+    --success:#7FB88A; --danger:#E0667A; --accent-contrast:#1A0D04;
+  }
+  html[data-theme="sunset-desk"][data-mode="light"]{
+    --bg:#FBF1E7; --surface:#FFFFFF; --surface-2:#F5E6D5; --border:#E9D2B6;
+    --text:#2E1A0E; --text-muted:#7A5C46; --accent:#B8571F; --accent-2:#C4632B;
+    --success:#4C8A5C; --danger:#C43F55; --accent-contrast:#FFF9F2;
+  }
+
+  html[data-theme="arctic-focus"][data-mode="dark"]{
+    --bg:#0C1418; --surface:#131E23; --surface-2:#1A272D; --border:#24343B;
+    --text:#E6F2F5; --text-muted:#8FA8AF; --accent:#5FCBE0; --accent-2:#8FE0D0;
+    --success:#3FBF8F; --danger:#E0667A; --accent-contrast:#04191E;
+  }
+  html[data-theme="arctic-focus"][data-mode="light"]{
+    --bg:#EFF7F9; --surface:#FFFFFF; --surface-2:#E1F0F3; --border:#C9E3E8;
+    --text:#0F2529; --text-muted:#4C6E75; --accent:#0E7C93; --accent-2:#0E9488;
+    --success:#0E8F5E; --danger:#C43F55; --accent-contrast:#F5FCFD;
+  }
+
+  html[data-theme="rosewood"][data-mode="dark"]{
+    --bg:#170F12; --surface:#211519; --surface-2:#2B1A20; --border:#3A2129;
+    --text:#F3E4E7; --text-muted:#A98A90; --accent:#D97E93; --accent-2:#E8A5B5;
+    --success:#7FB88A; --danger:#D97E6B; --accent-contrast:#1D0F13;
+  }
+  html[data-theme="rosewood"][data-mode="light"]{
+    --bg:#FBF0F1; --surface:#FFFFFF; --surface-2:#F5E1E4; --border:#E8C7CD;
+    --text:#2B1418; --text-muted:#7C5B60; --accent:#A8425A; --accent-2:#8C4A57;
+    --success:#4C8A5C; --danger:#B8543C; --accent-contrast:#FFF7F8;
+  }
+
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
 
   /* ===== SPLASH SCREEN (fixed navy/gold, independent of theme) ===== */
@@ -277,11 +321,13 @@
   .fc-breadcrumb .sep{ opacity:.5; }
 
   /* Toolbar */
-  .fc-toolbar{ display:flex; gap:8px; margin-bottom:14px; align-items:center; }
+  .fc-toolbar{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; align-items:center; }
   .fc-toolbar input[type="search"]{
-    flex:1; min-width:0; background:var(--surface); border:1px solid var(--border);
+    flex:1 1 100%; min-width:0; background:var(--surface); border:1px solid var(--border);
     color:var(--text); border-radius:var(--radius-sm); padding:9px 12px; font-size:13.5px; font-family:inherit;
   }
+  .fc-toolbar .toolbar-actions{ display:flex; gap:8px; flex:1 1 100%; }
+  .fc-toolbar .toolbar-actions > *{ flex:1; }
   .btn-ghost, .btn-accent, .btn-outline{
     border-radius:var(--radius-sm); padding:9px 13px; font-size:13px; font-weight:600;
     font-family:inherit; cursor:pointer; white-space:nowrap; border:1px solid var(--border);
@@ -309,6 +355,27 @@
   }
   .icon-btn svg{ width:15px; height:15px; }
   .icon-btn.danger{ color:var(--danger); }
+
+  .sched-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); overflow:hidden; min-width:360px; }
+  .sched-table thead th{ text-align:left; font-size:11px; color:var(--text-muted); font-weight:600; padding:9px 8px; border-bottom:1px solid var(--border); background:var(--surface-2); }
+  .sched-th-check, .sched-th-order, .sched-th-del{ width:1%; white-space:nowrap; }
+  .sched-table tbody tr{ border-bottom:1px solid var(--border); }
+  .sched-table tbody tr:last-child{ border-bottom:none; }
+  .sched-table tbody tr.done{ opacity:.5; }
+  .sched-table tbody tr.done .sched-td-text{ text-decoration:line-through; }
+  .sched-table td{ padding:9px 8px; vertical-align:middle; font-size:13px; }
+  .sched-td-text{ font-weight:600; unicode-bidi:plaintext; }
+  .sched-linkable{ cursor:pointer; }
+  .sched-check{ width:18px; height:18px; accent-color:var(--accent); display:block; }
+  .sched-link-tag{ font-size:11px; color:var(--accent); white-space:nowrap; }
+  .sched-link-tag-empty{ font-size:11px; color:var(--text-muted); }
+  .sched-reorder{ display:flex; flex-direction:column; gap:2px; }
+  .sched-reorder button{
+    width:22px; height:16px; border-radius:5px; border:1px solid var(--border); background:var(--surface-2);
+    color:var(--text-muted); font-size:9px; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
+  }
+  .sched-reorder button:disabled{ opacity:.3; cursor:default; }
+  .sched-del{ width:26px; height:26px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--danger); display:flex; align-items:center; justify-content:center; cursor:pointer; }
 
   /* Mini progress ring */
   .mini-ring{
@@ -399,6 +466,84 @@
   }
   .flip-face-back{ transform:rotateY(180deg); background:var(--surface-2); }
   .flip-hint{ font-size:11px; color:var(--text-muted); margin-top:-10px; margin-bottom:18px; }
+
+  /* Flip-face image layouts */
+  .flip-face.has-image{ padding:0; }
+  .flip-face.img-only{ display:block; padding:0; }
+  .flip-face.img-only .face-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:var(--radius-lg); }
+  .flip-face.img-below{ flex-direction:column; padding:0; }
+  .flip-face.img-below .face-img-wrap{ width:100%; height:58%; flex-shrink:0; overflow:hidden; border-radius:var(--radius-lg) var(--radius-lg) 0 0; background:var(--surface-2); position:relative; }
+  .flip-face.img-below .face-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+  .flip-face.img-below .face-text{ flex:1; width:100%; display:flex; align-items:center; justify-content:center; padding:14px 18px; overflow-y:auto; }
+  .flip-face.img-caption{ display:block; padding:0; }
+  .flip-face.img-caption .face-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:var(--radius-lg); }
+  .flip-face.img-caption .face-caption{
+    position:absolute; left:0; right:0; bottom:0; padding:24px 16px 14px;
+    background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.55) 60%, transparent);
+    color:#fff; font-size:14.5px; line-height:1.4; border-radius:0 0 var(--radius-lg) var(--radius-lg);
+    text-align:center; max-height:70%; overflow-y:auto;
+  }
+
+  /* Image field in editor */
+  .img-field-wrap{ margin-top:8px; }
+  .img-upload-btn{
+    display:flex; align-items:center; justify-content:center; gap:6px;
+    width:100%; padding:10px; border-radius:var(--radius-sm); border:1px dashed var(--border);
+    background:var(--surface-2); color:var(--text-muted); font-size:12.5px; font-family:inherit; cursor:pointer;
+  }
+  .img-upload-btn svg{ width:15px; height:15px; }
+  .img-preview{ position:relative; margin-top:8px; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--border); background:var(--surface-2); }
+  .img-preview img{ display:block; width:100%; max-height:160px; object-fit:contain; background:var(--surface-2); }
+  .img-preview-remove{
+    position:absolute; top:6px; right:6px; width:26px; height:26px; border-radius:50%;
+    background:rgba(0,0,0,.6); color:#fff; border:none; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:14px; line-height:1;
+  }
+  .layout-toggle-row{ display:flex; gap:6px; margin-top:8px; }
+  .layout-toggle-row button{
+    flex:1; padding:7px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2);
+    color:var(--text-muted); font-size:11.5px; font-family:inherit; cursor:pointer;
+  }
+  .layout-toggle-row button.active{ color:var(--accent); border-color:var(--accent); }
+  .row-thumb{ width:38px; height:38px; border-radius:8px; object-fit:cover; flex-shrink:0; border:1px solid var(--border); background:var(--surface-2); }
+
+  .review-nav-row{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:12px; }
+  .review-nav-btn{
+    width:28px; height:28px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2);
+    color:var(--text); font-size:15px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-family:inherit;
+  }
+  .review-nav-btn:disabled{ opacity:.35; cursor:default; }
+  .review-nav-btn:not(:disabled):active{ background:var(--surface); }
+  .review-range-label{ font-size:12.5px; color:var(--text-muted); min-width:150px; text-align:center; }
+
+  .ov-delta-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px; }
+  .ov-delta-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:12px; display:flex; flex-direction:column; gap:2px;
+  }
+  .ov-delta-label{ font-size:11px; color:var(--text-muted); }
+  .ov-delta-value{ font-size:19px; font-weight:700; }
+  .ov-delta-change{ font-size:11.5px; font-weight:600; }
+  .ov-delta-change.up{ color:#7CC48F; }
+  .ov-delta-change.down{ color:#E38686; }
+  .ov-delta-change.flat{ color:var(--text-muted); }
+
+  .ov-chart-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:14px; margin-bottom:14px;
+  }
+  .ov-chart-title{ font-size:13px; font-weight:600; margin-bottom:10px; color:var(--text); }
+  .ov-chart-wrap{ position:relative; height:190px; }
+  .ov-chart-empty{ font-size:12px; color:var(--text-muted); text-align:center; padding:30px 0; }
+
+  .multi-pick-subject{ border-bottom:1px solid var(--border); padding:4px 0; }
+  .multi-pick-subject:last-child{ border-bottom:none; }
+  .multi-pick-row{ display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px; }
+  .multi-pick-subject-row{ font-weight:600; }
+  .multi-pick-units{ padding-left:18px; }
+  .multi-pick-units .multi-pick-row{ font-size:12.5px; color:var(--text-muted); padding:6px 4px; }
+  .multi-pick-row input[type="checkbox"]{ width:16px; height:16px; accent-color:var(--accent); flex-shrink:0; }
   .know-buttons{ display:flex; gap:10px; width:100%; max-width:420px; }
   .know-btn{
     flex:1; padding:14px; border-radius:var(--radius-md); font-family:inherit; font-weight:700; font-size:14px;
@@ -637,6 +782,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer onload="window.__chartReady=true; window.dispatchEvent(new Event('zenith:chartready'));"></script>
 <script>window.addEventListener('DOMContentLoaded', ()=>{ if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } });</script>
 </head>
 <body>
@@ -687,6 +833,14 @@
     <button class="nav-item" data-view="novels">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/><path d="M4 19.5V6.5"/></svg>
       <span>Novels</span>
+    </button>
+    <button class="nav-item" data-view="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+      <span>Overview</span>
+    </button>
+    <button class="nav-item" data-view="schedule">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 3v3"/><path d="M16 3v3"/><path d="M8 14l2 2 4-4"/></svg>
+      <span>Schedule</span>
     </button>
   </div>
 
@@ -754,6 +908,9 @@
           <div class="streak-pill" id="streakPillHabits"><b>—</b> Habits</div>
           <div class="streak-pill" id="streakPillReading"><b>—</b> Reading</div>
         </div>
+        <div class="ov-chart-wrap" id="dashStreakChartWrap" style="height:130px; margin-top:14px;">
+          <canvas id="dashStreakChart"></canvas>
+        </div>
       </div>
 
       <div class="card">
@@ -781,6 +938,11 @@
             <button class="mode-btn" data-range="30">Month</button>
           </div>
         </div>
+        <div class="review-nav-row" id="reviewNavRow">
+          <button class="review-nav-btn" id="reviewPrevBtn" aria-label="Previous period">‹</button>
+          <div class="review-range-label" id="reviewRangeLabel"></div>
+          <button class="review-nav-btn" id="reviewNextBtn" aria-label="Next period">›</button>
+        </div>
         <div id="reviewContent"><div class="placeholder-empty">Loading…</div></div>
       </div>
 
@@ -802,8 +964,11 @@
       <div class="fc-breadcrumb" id="fcBreadcrumb"></div>
       <div class="fc-toolbar" id="fcToolbar">
         <input type="search" id="fcSearch" placeholder="Search…">
-        <button class="btn-ghost" id="fcManageBtn">Manage</button>
-        <button class="btn-accent" id="fcAddBtn">+ Add</button>
+        <div class="toolbar-actions">
+          <button class="btn-ghost" id="fcMultiBtn" style="display:none;">Study multiple</button>
+          <button class="btn-ghost" id="fcManageBtn">Manage</button>
+          <button class="btn-accent" id="fcAddBtn">+ Add</button>
+        </div>
       </div>
       <div id="fcContent"></div>
     </div>
@@ -812,8 +977,10 @@
       <div class="fc-breadcrumb" id="qzBreadcrumb"></div>
       <div class="fc-toolbar" id="qzToolbar">
         <input type="search" id="qzSearch" placeholder="Search…">
-        <button class="btn-ghost" id="qzManageBtn">Manage</button>
-        <button class="btn-accent" id="qzAddBtn">+ Add</button>
+        <div class="toolbar-actions">
+          <button class="btn-ghost" id="qzManageBtn">Manage</button>
+          <button class="btn-accent" id="qzAddBtn">+ Add</button>
+        </div>
       </div>
       <div id="qzContent"></div>
     </div>
@@ -821,8 +988,10 @@
       <div class="fc-breadcrumb" id="psBreadcrumb"></div>
       <div class="fc-toolbar" id="psToolbar">
         <input type="search" id="psSearch" placeholder="Search…">
-        <button class="btn-ghost" id="psManageBtn">Manage</button>
-        <button class="btn-accent" id="psAddBtn">+ Add</button>
+        <div class="toolbar-actions">
+          <button class="btn-ghost" id="psManageBtn">Manage</button>
+          <button class="btn-accent" id="psAddBtn">+ Add</button>
+        </div>
       </div>
       <div id="psContent"></div>
     </div>
@@ -830,8 +999,10 @@
       <div class="fc-breadcrumb" id="pdBreadcrumb"></div>
       <div class="fc-toolbar" id="pdToolbar">
         <input type="search" id="pdSearch" placeholder="Search…">
-        <button class="btn-ghost" id="pdManageBtn">Manage</button>
-        <button class="btn-accent" id="pdAddBtn">+ Add</button>
+        <div class="toolbar-actions">
+          <button class="btn-ghost" id="pdManageBtn">Manage</button>
+          <button class="btn-accent" id="pdAddBtn">+ Add</button>
+        </div>
       </div>
       <div id="pdContent"></div>
     </div>
@@ -851,7 +1022,9 @@
     <div class="study-panel" id="panel-hb-courses">
       <div class="fc-toolbar" id="hbCoursesToolbar">
         <input type="search" id="hbCoursesSearch" placeholder="Search courses…">
-        <button class="btn-accent" id="hbAddCourseBtn">+ Course</button>
+        <div class="toolbar-actions">
+          <button class="btn-accent" id="hbAddCourseBtn">+ Course</button>
+        </div>
       </div>
       <div id="hbCoursesContent"></div>
     </div>
@@ -863,10 +1036,41 @@
     <div class="fc-breadcrumb" id="bkBreadcrumb"></div>
     <div class="fc-toolbar" id="bkToolbar">
       <input type="search" id="bkSearch" placeholder="Search…">
-      <button class="btn-ghost" id="bkManageBtn">Manage</button>
-      <button class="btn-accent" id="bkAddBtn">+ Add</button>
+      <div class="toolbar-actions">
+        <button class="btn-ghost" id="bkManageBtn">Manage</button>
+        <button class="btn-accent" id="bkAddBtn">+ Add</button>
+      </div>
     </div>
     <div id="bkContent"></div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="view" id="view-overview">
+    <div class="view-label">Overview</div>
+    <div class="hb-card-head" style="margin-bottom:10px;">
+      <div class="mode-toggle" id="ovRangeToggle" style="margin-top:0;">
+        <button class="mode-btn active" data-range="7">Week</button>
+        <button class="mode-btn" data-range="30">Month</button>
+      </div>
+    </div>
+    <div class="review-nav-row" id="ovNavRow">
+      <button class="review-nav-btn" id="ovPrevBtn" aria-label="Previous period">‹</button>
+      <div class="review-range-label" id="ovRangeLabel"></div>
+      <button class="review-nav-btn" id="ovNextBtn" aria-label="Next period">›</button>
+    </div>
+    <div id="ovContent"><div class="placeholder-empty">Loading…</div></div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="view" id="view-schedule">
+    <div class="view-label">Schedule</div>
+    <div class="review-nav-row" id="schedNavRow">
+      <button class="review-nav-btn" id="schedPrevBtn" aria-label="Previous day">‹</button>
+      <div class="review-range-label" id="schedDateLabel"></div>
+      <button class="review-nav-btn" id="schedNextBtn" aria-label="Next day">›</button>
+    </div>
+    <div id="schedContent"><div class="placeholder-empty">Loading…</div></div>
+    <button class="btn-accent" id="schedAddBtn" style="width:100%; margin-top:10px;">+ Add item</button>
   </section>
 
   <!-- SETTINGS -->
@@ -881,6 +1085,15 @@
         <button class="mode-btn" data-mode="light">Light</button>
         <button class="mode-btn" data-mode="dark">Dark</button>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:12px;">
+      <div class="card-title">Goals</div>
+      <div class="field-label">Daily pomodoro target</div>
+      <input type="number" class="field-input" id="goalPomoInput" min="0" step="1" placeholder="e.g. 4">
+      <div class="field-label" style="margin-top:10px;">Daily pages target</div>
+      <input type="number" class="field-input" id="goalPagesInput" min="0" step="1" placeholder="e.g. 20">
+      <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Shown as a reference line on your Overview charts.</div>
     </div>
 
     <div class="card" style="margin-top:12px;">
@@ -906,6 +1119,10 @@
     { id:'silent-cosmos', name:'Silent Cosmos', desc:'Deep work / flow', dots:['#9C8FC7','#6B6B7A','#131316'] },
     { id:'nebula-glow', name:'Nebula Glow', desc:'Vibrant / OLED', dots:['#D946EF','#7C3AED','#0D0620'] },
     { id:'lunar-monochrome', name:'Lunar Monochrome', desc:'Minimalist', dots:['#FAFAFA','#A1A1AA','#27272A'] },
+    { id:'forest-study', name:'Forest Study', desc:'Calm & grounded', dots:['#6FAF6E','#9BCB82','#181F16'] },
+    { id:'sunset-desk', name:'Sunset Desk', desc:'Warm afternoon light', dots:['#E28449','#F0B074','#241811'] },
+    { id:'arctic-focus', name:'Arctic Focus', desc:'Crisp & minimal', dots:['#5FCBE0','#8FE0D0','#131E23'] },
+    { id:'rosewood', name:'Rosewood', desc:'Muted & sophisticated', dots:['#D97E93','#E8A5B5','#211519'] },
   ];
 
   const root = document.documentElement;
@@ -999,17 +1216,17 @@
 /* ============================================================
    IndexedDB — shared tiny wrapper
    ============================================================ */
-const ZDB_NAME = 'zenithDB', ZDB_VERSION = 6;
+const ZDB_NAME = 'zenithDB', ZDB_VERSION = 7;
 function zOpenDB(){
   return new Promise((resolve, reject)=>{
     const req = indexedDB.open(ZDB_NAME, ZDB_VERSION);
     req.onupgradeneeded = e=>{
       const db = e.target.result;
-      const stores = ['fc_subjects','fc_units','fc_cards','fc_history','qz_subjects','qz_units','qz_quizzes','qz_history','ps_subjects','ps_passages','ps_history','pdf_subjects','pdf_units','pdf_files','pdf_blobs','hb_days','hb_tasks','hb_courses','bk_genres','bk_books','meta'];
+      const stores = ['fc_subjects','fc_units','fc_cards','fc_history','qz_subjects','qz_units','qz_quizzes','qz_history','ps_subjects','ps_passages','ps_history','pdf_subjects','pdf_units','pdf_files','pdf_blobs','hb_days','hb_tasks','hb_courses','bk_genres','bk_books','sched_days','meta'];
       stores.forEach(s=>{
         if(!db.objectStoreNames.contains(s)){
           if(s==='meta') db.createObjectStore(s, {keyPath:'key'});
-          else if(s==='hb_days') db.createObjectStore(s, {keyPath:'date'});
+          else if(s==='hb_days' || s==='sched_days') db.createObjectStore(s, {keyPath:'date'});
           else db.createObjectStore(s, {keyPath:'id', autoIncrement:true});
         }
       });
@@ -1145,6 +1362,163 @@ function zShowMathPalette(anchorBtn, textareaId){
   },0);
 }
 
+// ---------- IMAGE HELPERS (flashcard images) ----------
+function zReadImageFile(file){
+  return new Promise((resolve, reject)=>{
+    if(!file) return resolve(null);
+    if(!file.type.startsWith('image/')) return reject(new Error('Please choose an image file.'));
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const maxDim = 1600;
+        let {width, height} = img;
+        if(width > maxDim || height > maxDim){
+          const scale = maxDim / Math.max(width, height);
+          width = Math.round(width*scale); height = Math.round(height*scale);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.88));
+      };
+      img.onerror = ()=>reject(new Error('Could not read that image.'));
+      img.src = reader.result;
+    };
+    reader.onerror = ()=>reject(new Error('Could not read that image.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+// Builds the image-attach UI for one card face (front/back) inside the card editor.
+// prefix e.g. 'mCardFront' -> ids mCardFrontImg (hidden data), mCardFrontImgBtn, etc.
+function zImageFieldHtml(prefix, existingImage, existingLayout){
+  const hasImg = !!existingImage;
+  return `
+    <div class="img-field-wrap" id="${prefix}ImgWrap">
+      <input type="file" accept="image/*" id="${prefix}ImgInput" style="display:none;">
+      <input type="hidden" id="${prefix}ImgData" value="${existingImage ? esc(existingImage) : ''}">
+      <input type="hidden" id="${prefix}ImgLayout" value="${esc(existingLayout||'below')}">
+      <div id="${prefix}ImgArea">
+        ${hasImg ? zImagePreviewHtml(prefix, existingImage, existingLayout) : `
+        <button type="button" class="img-upload-btn" id="${prefix}ImgBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+          Add image
+        </button>`}
+      </div>
+    </div>`;
+}
+function zImagePreviewHtml(prefix, dataUrl, layout){
+  return `
+    <div class="img-preview">
+      <img src="${dataUrl}" alt="">
+      <button type="button" class="img-preview-remove" id="${prefix}ImgRemove">✕</button>
+    </div>
+    <div class="layout-toggle-row" id="${prefix}ImgLayoutRow" data-textcheck="${prefix}">
+      <button type="button" data-layout="below" class="${layout!=='caption'?'active':''}">Text below</button>
+      <button type="button" data-layout="caption" class="${layout==='caption'?'active':''}">Text as caption</button>
+    </div>`;
+}
+// Wires the image field's interactivity. textareaId = the id of that face's text field (to decide if layout row should show).
+function wireImageField(backdrop, prefix, textareaId){
+  const area = backdrop.querySelector('#'+prefix+'ImgArea');
+  const dataInput = backdrop.querySelector('#'+prefix+'ImgData');
+  const layoutInput = backdrop.querySelector('#'+prefix+'ImgLayout');
+  const fileInput = backdrop.querySelector('#'+prefix+'ImgInput');
+
+  function refreshLayoutVisibility(){
+    const row = backdrop.querySelector('#'+prefix+'ImgLayoutRow');
+    if(!row) return;
+    const hasText = !!document.getElementById(textareaId)?.value.trim();
+    row.style.display = (hasText && dataInput.value) ? 'flex' : 'none';
+  }
+  function wirePreviewControls(){
+    backdrop.querySelector('#'+prefix+'ImgRemove')?.addEventListener('click', ()=>{
+      dataInput.value = ''; layoutInput.value = 'below';
+      area.innerHTML = `
+        <button type="button" class="img-upload-btn" id="${prefix}ImgBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+          Add image
+        </button>`;
+      wireUploadBtn();
+    });
+    backdrop.querySelector('#'+prefix+'ImgLayoutRow')?.querySelectorAll('button').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        layoutInput.value = b.dataset.layout;
+        backdrop.querySelector('#'+prefix+'ImgLayoutRow').querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+      });
+    });
+    refreshLayoutVisibility();
+  }
+  function wireUploadBtn(){
+    backdrop.querySelector('#'+prefix+'ImgBtn')?.addEventListener('click', ()=>fileInput.click());
+  }
+  fileInput.addEventListener('change', async ()=>{
+    const file = fileInput.files[0];
+    if(!file) return;
+    try{
+      const dataUrl = await zReadImageFile(file);
+      dataInput.value = dataUrl;
+      area.innerHTML = zImagePreviewHtml(prefix, dataUrl, layoutInput.value);
+      wirePreviewControls();
+    }catch(err){
+      zShowError(err.message || 'Could not load that image.');
+    } finally {
+      fileInput.value = '';
+    }
+  });
+  wireUploadBtn();
+  wirePreviewControls();
+  document.getElementById(textareaId)?.addEventListener('input', refreshLayoutVisibility);
+}
+function esc(str){ const d=document.createElement('div'); d.textContent = str==null?'':str; return d.innerHTML; }
+
+// Global modal helpers, for code outside any module IIFE (e.g. Schedule).
+function openModal(title, bodyHtml, onMount){
+  let backdrop = document.getElementById('zModal');
+  if(backdrop) backdrop.remove();
+  backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.id = 'zModal';
+  backdrop.innerHTML = `<div class="modal-box"><div class="modal-title">${esc(title)}</div><div id="zModalBody">${bodyHtml}</div></div>`;
+  document.body.appendChild(backdrop);
+  backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
+  requestAnimationFrame(()=>backdrop.classList.add('show'));
+  if(onMount) onMount(backdrop);
+}
+function closeModal(){
+  const backdrop = document.getElementById('zModal');
+  if(!backdrop) return;
+  backdrop.classList.remove('show');
+  setTimeout(()=>backdrop.remove(), 200);
+}
+
+// Renders one flip-card face (front or back) given text + optional image/layout.
+function zRenderFace(text, imageData, layout){
+  const hasText = !!(text && text.trim());
+  const hasImg = !!imageData;
+  if(hasImg && !hasText){
+    return `<img class="face-img" src="${imageData}" alt="">`;
+  }
+  if(hasImg && hasText && layout==='caption'){
+    return `<img class="face-img" src="${imageData}" alt=""><div class="face-caption">${zRenderMath(text)}</div>`;
+  }
+  if(hasImg && hasText){
+    return `<div class="face-img-wrap"><img class="face-img" src="${imageData}" alt=""></div><div class="face-text">${zRenderMath(text)}</div>`;
+  }
+  return zRenderMath(text);
+}
+function zFaceClass(text, imageData, layout){
+  const hasText = !!(text && text.trim());
+  const hasImg = !!imageData;
+  if(hasImg && !hasText) return 'has-image img-only';
+  if(hasImg && hasText && layout==='caption') return 'has-image img-caption';
+  if(hasImg && hasText) return 'has-image img-below';
+  return '';
+}
+
 function zDifficulty(reps){
   reps = reps || 0;
   if(reps <= 2) return {label:'Hard', cls:'hard'};
@@ -1275,9 +1649,11 @@ const FC = (function(){
   function updateToolbar(){
     const addBtn = document.getElementById('fcAddBtn');
     const manageBtn = document.getElementById('fcManageBtn');
+    const multiBtn = document.getElementById('fcMultiBtn');
     $toolbar().style.display = state.level==='study' ? 'none' : 'flex';
     addBtn.textContent = state.level==='subjects' ? '+ Subject' : state.level==='units' ? '+ Unit' : '+ Card';
     manageBtn.classList.toggle('active', state.manage);
+    multiBtn.style.display = (state.level==='subjects' && !state.manage) ? '' : 'none';
     document.getElementById('fcSearch').placeholder =
       state.level==='subjects' ? 'Search subjects…' : state.level==='units' ? 'Search units…' : 'Search cards…';
   }
@@ -1372,7 +1748,7 @@ const FC = (function(){
 
   async function renderCards(){
     let cards = await cardsFor(state.unitId);
-    if(state.search) cards = cards.filter(c=>c.front.toLowerCase().includes(state.search.toLowerCase()) || c.back.toLowerCase().includes(state.search.toLowerCase()));
+    if(state.search) cards = cards.filter(c=>(c.front||'').toLowerCase().includes(state.search.toLowerCase()) || (c.back||'').toLowerCase().includes(state.search.toLowerCase()));
     const dueCount = cards.filter(isDue).length;
 
     let html = '';
@@ -1388,9 +1764,11 @@ const FC = (function(){
     } else {
       html += cards.map((c,i)=>{
         const diff = zDifficulty(c.reps);
+        const rowLabel = c.front ? esc(c.front.slice(0,60)) : (c.frontImage ? '<span style="opacity:.6">(image)</span>' : '');
         return `
         <div class="list-row" data-id="${c.id}" style="cursor:${state.manage?'default':'pointer'}">
-          <div class="row-main"><div class="row-name">${esc(c.front.slice(0,60))}</div><div class="row-sub">${c.lastResult ? (c.lastResult==='knew'?'Knew it last time':'Review needed') : 'Not reviewed yet'}</div></div>
+          ${c.frontImage ? `<img class="row-thumb" src="${c.frontImage}" alt="">` : ''}
+          <div class="row-main"><div class="row-name">${rowLabel}</div><div class="row-sub">${c.lastResult ? (c.lastResult==='knew'?'Knew it last time':'Review needed') : 'Not reviewed yet'}</div></div>
           <span class="diff-badge ${diff.cls}">${diff.label}</span>
           ${state.manage ? `
             <div class="row-manage-controls">
@@ -1519,26 +1897,40 @@ const FC = (function(){
 
   async function showAddCardModal(existing){
     openModal(existing ? 'Edit card' : 'New card', `
-      ${dirFieldHtml('mCardFront','Front', 'Question / term…', existing?.front)}
-      ${dirFieldHtml('mCardBack','Back', 'Answer / definition…', existing?.back)}
+      ${dirFieldHtml('mCardFront','Front', 'Question / term… (optional if using an image)', existing?.front)}
+      ${zImageFieldHtml('mCardFront', existing?.frontImage, existing?.frontLayout)}
+      ${dirFieldHtml('mCardBack','Back', 'Answer / definition… (optional if using an image)', existing?.back)}
+      ${zImageFieldHtml('mCardBack', existing?.backImage, existing?.backLayout)}
       <div class="modal-actions">
         <button class="btn-ghost" id="mCancel">Cancel</button>
         <button class="btn-accent" id="mSave">Save</button>
       </div>`, backdrop=>{
         wireDirToggles(backdrop);
+        wireImageField(backdrop, 'mCardFront', 'mCardFront');
+        wireImageField(backdrop, 'mCardBack', 'mCardBack');
         backdrop.querySelector('#mCancel').addEventListener('click', closeModal);
         backdrop.querySelector('#mSave').addEventListener('click', async (ev)=>{
           const btn = ev.currentTarget;
           if(btn.disabled) return;
           const front = document.getElementById('mCardFront').value.trim();
           const back = document.getElementById('mCardBack').value.trim();
-          if(!front || !back){ zShowError('Fill in both the front and back of the card.'); return; }
+          const frontImage = document.getElementById('mCardFrontImgData').value || null;
+          const backImage = document.getElementById('mCardBackImgData').value || null;
+          const frontLayout = document.getElementById('mCardFrontImgLayout').value || 'below';
+          const backLayout = document.getElementById('mCardBackImgLayout').value || 'below';
+          if((!front && !frontImage) || (!back && !backImage)){
+            zShowError('Each side needs text, an image, or both.'); return;
+          }
           btn.disabled = true;
           try{
-            if(existing && existing.id){ existing.front=front; existing.back=back; await zPut('fc_cards', existing); }
-            else {
+            if(existing && existing.id){
+              existing.front=front; existing.back=back;
+              existing.frontImage=frontImage; existing.backImage=backImage;
+              existing.frontLayout=frontLayout; existing.backLayout=backLayout;
+              await zPut('fc_cards', existing);
+            } else {
               const all = await cardsFor(state.unitId);
-              await zAdd('fc_cards', {unitId: state.unitId, front, back, order: all.length, interval:0, dueDate:null, reps:0, lastResult:null});
+              await zAdd('fc_cards', {unitId: state.unitId, front, back, frontImage, backImage, frontLayout, backLayout, order: all.length, interval:0, dueDate:null, reps:0, lastResult:null});
             }
             closeModal(); render();
           }catch(err){
@@ -1550,10 +1942,10 @@ const FC = (function(){
   }
 
   // ---------- STUDY SESSION ----------
-  function startSession(cards, isTemp){
+  function startSession(cards, isTemp, multiUnitIds){
     if(!cards.length) return;
     state.level = 'study';
-    state.session = { cards, index:0, flipped:false, knew:0, dont:0, unitId: state.unitId };
+    state.session = { cards, index:0, flipped:false, knew:0, dont:0, unitId: state.unitId, multiUnitIds: multiUnitIds || null };
     renderSession();
   }
 
@@ -1568,8 +1960,8 @@ const FC = (function(){
         <div class="study-progress">Card ${s.index+1} of ${s.cards.length}</div>
         <div class="flip-card" id="flipCard">
           <div class="flip-card-inner">
-            <div class="flip-face">${zRenderMath(card.front)}</div>
-            <div class="flip-face flip-face-back">${zRenderMath(card.back)}</div>
+            <div class="flip-face ${zFaceClass(card.front, card.frontImage, card.frontLayout)}">${zRenderFace(card.front, card.frontImage, card.frontLayout)}</div>
+            <div class="flip-face flip-face-back ${zFaceClass(card.back, card.backImage, card.backLayout)}">${zRenderFace(card.back, card.backImage, card.backLayout)}</div>
           </div>
         </div>
         <div class="flip-hint">Tap the card to flip</div>
@@ -1602,6 +1994,14 @@ const FC = (function(){
     const due = new Date(); due.setDate(due.getDate() + card.interval);
     card.dueDate = zDateStr(due);
     await zPut('fc_cards', card);
+    zRefreshAppBadge();
+
+    if(s.multiUnitIds){
+      s.perUnit = s.perUnit || {};
+      const bucket = s.perUnit[card.unitId] || (s.perUnit[card.unitId] = {knew:0, total:0});
+      bucket.total++;
+      if(knew) bucket.knew++;
+    }
 
     s.index++;
     if(s.index >= s.cards.length){ await finishSession(); }
@@ -1610,7 +2010,14 @@ const FC = (function(){
 
   async function finishSession(){
     const s = state.session;
-    await zAdd('fc_history', { unitId: s.unitId, date: zToday(), knew: s.knew, total: s.knew+s.dont });
+    const hour = new Date().getHours();
+    if(s.multiUnitIds && s.perUnit){
+      for(const [unitId, res] of Object.entries(s.perUnit)){
+        await zAdd('fc_history', { unitId: Number(unitId), date: zToday(), knew: res.knew, total: res.total, hour });
+      }
+    } else {
+      await zAdd('fc_history', { unitId: s.unitId, date: zToday(), knew: s.knew, total: s.knew+s.dont, hour });
+    }
     const streak = await bumpStreak();
     await zBumpStreak('study_streak'); zRefreshStudyStreakPill();
     const pct = Math.round((s.knew/(s.knew+s.dont))*100) || 0;
@@ -1667,6 +2074,7 @@ const FC = (function(){
   function init(){
     document.getElementById('fcSearch').addEventListener('input', e=>{ state.search = e.target.value; if(state.level!=='study') render(); });
     document.getElementById('fcManageBtn').addEventListener('click', ()=>{ state.manage = !state.manage; render(); });
+    document.getElementById('fcMultiBtn').addEventListener('click', showMultiStudyModal);
     document.getElementById('fcAddBtn').addEventListener('click', ()=>{
       if(state.level==='subjects') showAddSubjectModal();
       else if(state.level==='units') showAddUnitModal();
@@ -1674,6 +2082,62 @@ const FC = (function(){
     });
     render();
     refreshDashboard();
+  }
+
+  // ---------- MULTI-SUBJECT / MULTI-UNIT STUDY ----------
+  async function showMultiStudyModal(){
+    const subjects = (await zGetAll('fc_subjects')).sort((a,b)=>a.order-b.order);
+    if(!subjects.length){ zShowError('Add a subject first.'); return; }
+    const unitsBySubject = {};
+    for(const s of subjects){ unitsBySubject[s.id] = await unitsFor(s.id); }
+
+    const bodyHtml = `
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Pick any units across any subjects — they'll be combined and shuffled into one session.</div>
+      <div id="multiPickList" style="max-height:320px; overflow-y:auto;">
+        ${subjects.map(s=>`
+          <div class="multi-pick-subject">
+            <label class="multi-pick-row multi-pick-subject-row">
+              <input type="checkbox" data-subj="${s.id}" class="multi-subj-check">
+              <span>${esc(s.name)}</span>
+            </label>
+            <div class="multi-pick-units">
+              ${unitsBySubject[s.id].map(u=>`
+                <label class="multi-pick-row">
+                  <input type="checkbox" data-unit="${u.id}" data-subj="${s.id}" class="multi-unit-check">
+                  <span>${esc(u.name)}</span>
+                </label>`).join('') || `<div style="font-size:11.5px; color:var(--text-muted); padding:4px 0 8px 28px;">No units yet</div>`}
+            </div>
+          </div>`).join('')}
+      </div>
+      <label class="multi-pick-row" style="border-top:1px solid var(--border); margin-top:6px; padding-top:12px;">
+        <input type="checkbox" id="multiDueOnly">
+        <span>Due only</span>
+      </label>
+      <div class="modal-actions">
+        <button class="btn-ghost" id="multiCancel">Cancel</button>
+        <button class="btn-accent" id="multiStart">Start session</button>
+      </div>`;
+
+    openModal('Study multiple', bodyHtml, backdrop=>{
+      backdrop.querySelectorAll('.multi-subj-check').forEach(cb=>{
+        cb.addEventListener('change', ()=>{
+          backdrop.querySelectorAll(`.multi-unit-check[data-subj="${cb.dataset.subj}"]`).forEach(uc=>{ uc.checked = cb.checked; });
+        });
+      });
+      backdrop.querySelector('#multiCancel').addEventListener('click', closeModal);
+      backdrop.querySelector('#multiStart').addEventListener('click', async ()=>{
+        const unitIds = Array.from(backdrop.querySelectorAll('.multi-unit-check:checked')).map(cb=>Number(cb.dataset.unit));
+        if(!unitIds.length){ zShowError('Pick at least one unit.'); return; }
+        const allCards = await zGetAll('fc_cards');
+        let combined = allCards.filter(c=>unitIds.includes(c.unitId));
+        const dueOnly = backdrop.querySelector('#multiDueOnly').checked;
+        if(dueOnly) combined = combined.filter(isDue);
+        if(!combined.length){ zShowError(dueOnly ? 'No cards are due right now in those units.' : 'Those units have no cards yet.'); return; }
+        closeModal();
+        state.level = 'study';
+        startSession(shuffle(combined.slice()), true, unitIds);
+      });
+    });
   }
 
   window.addEventListener('zenith:view', e=>{
@@ -1691,8 +2155,17 @@ const FC = (function(){
     state.manage = false; state.search = '';
     render();
   }
+  async function locateUnit(unitId){
+    const unit = await zGet('fc_units', unitId);
+    if(!unit){ zShowError('That unit no longer exists.'); return; }
+    state.subjectId = unit.subjectId;
+    state.unitId = unit.id;
+    state.level = 'cards';
+    state.manage = false; state.search = '';
+    render();
+  }
 
-  return { init, refreshDashboard, locateCard };
+  return { init, refreshDashboard, locateCard, locateUnit };
 })();
 
 /* ============================================================
@@ -2182,7 +2655,7 @@ const QZ = (function(){
       await zPut('qz_quizzes', q);
     }
     const total = s.quizzes.length;
-    await zAdd('qz_history', { unitId: s.unitId, date: zToday(), correct, total });
+    await zAdd('qz_history', { unitId: s.unitId, date: zToday(), correct, total, hour: new Date().getHours() });
     const streak = await bumpStreak();
     await zBumpStreak('study_streak'); zRefreshStudyStreakPill();
     const pct = Math.round((correct/total)*100) || 0;
@@ -2281,8 +2754,17 @@ const QZ = (function(){
     state.manage = false; state.search = '';
     render();
   }
+  async function locateUnit(unitId){
+    const unit = await zGet('qz_units', unitId);
+    if(!unit){ zShowError('That unit no longer exists.'); return; }
+    state.subjectId = unit.subjectId;
+    state.unitId = unit.id;
+    state.level = 'cards';
+    state.manage = false; state.search = '';
+    render();
+  }
 
-  return { init, refreshDashboard, locateQuiz };
+  return { init, refreshDashboard, locateQuiz, locateUnit };
 })();
 
 /* ============================================================
@@ -2568,7 +3050,7 @@ const PS = (function(){
   async function saveScore(passage, pct, method){
     passage.lastResult = pct;
     await zPut('ps_passages', passage);
-    await zAdd('ps_history', {passageId: passage.id, date: zToday(), score: pct, method});
+    await zAdd('ps_history', {passageId: passage.id, date: zToday(), score: pct, method, hour: new Date().getHours() });
     const streak = await bumpStreak();
     await zBumpStreak('study_streak'); zRefreshStudyStreakPill();
     $breadcrumb().innerHTML = '';
@@ -2795,6 +3277,36 @@ async function zRefreshStudyStreakPill(){
   const pill = document.getElementById('streakPillStudy');
   if(pill) pill.innerHTML = `<b>${streak}</b> Study`;
 }
+
+let zDashStreakChart = null;
+async function zRenderDashStreakChart(){
+  const canvas = document.getElementById('dashStreakChart');
+  if(!canvas) return;
+  const dateList = zDateRangeDates(30, 0);
+  const data = await zOvDayData(dateList);
+  const streakSeries = zOvStreakSeries(dateList, data.activeByDay);
+  if(zDashStreakChart){ zDashStreakChart.destroy(); zDashStreakChart = null; }
+  if(!window.Chart){
+    const wrap = document.getElementById('dashStreakChartWrap');
+    if(wrap) wrap.innerHTML = `<div class="ov-chart-empty">Charts need an internet connection to load the first time.</div>`;
+    return;
+  }
+  if(!streakSeries.some(v=>v>0)){
+    const wrap = document.getElementById('dashStreakChartWrap');
+    if(wrap) wrap.innerHTML = `<div class="ov-chart-empty">Your streak history will show up here once you're active a few days in a row.</div>`;
+    return;
+  }
+  const dayLabels = dateList.map(zFormatShortDate);
+  zDashStreakChart = zOvMakeChart('dashStreakChart', 'line', dayLabels, [
+    { label:'Active-day streak', data:streakSeries, borderColor:zThemeColor('--accent'), backgroundColor:zThemeColor('--accent'), tension:0.2, pointRadius:2 },
+  ], { scales:{ x:{ ticks:{ color:zThemeColor('--text-muted'), font:{size:9}, maxRotation:0, autoSkip:true, maxTicksLimit:6 }, grid:{display:false} } } });
+}
+window.addEventListener('zenith:view', e=>{
+  if(e.detail==='dashboard') zRenderDashStreakChart();
+});
+window.addEventListener('zenith:chartready', ()=>{
+  if(document.getElementById('view-dashboard')?.classList.contains('active')) zRenderDashStreakChart();
+});
 
 /* ============================================================
    POMODORO MODULE
@@ -3483,9 +3995,42 @@ async function zRefreshStorageIndicator(){
 window.addEventListener('zenith:view', e=>{ if(e.detail==='settings') zRefreshStorageIndicator(); });
 zRefreshStorageIndicator();
 
+// ---------- APP ICON BADGE (due flashcard count) ----------
+async function zRefreshAppBadge(){
+  if(!('setAppBadge' in navigator)) return;
+  try{
+    const cards = await zGetAll('fc_cards');
+    const dueCount = cards.filter(c=>!c.dueDate || c.dueDate <= zToday()).length;
+    if(dueCount > 0) await navigator.setAppBadge(dueCount);
+    else if('clearAppBadge' in navigator) await navigator.clearAppBadge();
+  }catch(err){ /* badging unsupported or blocked — fail silently */ }
+}
+window.addEventListener('zenith:view', e=>{
+  if(e.detail==='dashboard' || e.detail==='study') zRefreshAppBadge();
+});
+zRefreshAppBadge();
+
+// ---------- GOALS SETTINGS ----------
+async function zLoadGoalInputs(){
+  const goals = await zGet('meta', 'zenith_goals') || {};
+  const pomoEl = document.getElementById('goalPomoInput');
+  const pagesEl = document.getElementById('goalPagesInput');
+  if(pomoEl) pomoEl.value = goals.pomoTarget || '';
+  if(pagesEl) pagesEl.value = goals.pagesTarget || '';
+}
+async function zSaveGoal(key, value){
+  const goals = await zGet('meta', 'zenith_goals') || {key:'zenith_goals'};
+  goals[key] = value ? Number(value) : null;
+  await zPut('meta', goals);
+}
+document.getElementById('goalPomoInput')?.addEventListener('change', e=>zSaveGoal('pomoTarget', e.target.value));
+document.getElementById('goalPagesInput')?.addEventListener('change', e=>zSaveGoal('pagesTarget', e.target.value));
+window.addEventListener('zenith:view', e=>{ if(e.detail==='settings') zLoadGoalInputs(); });
+zLoadGoalInputs();
+
 // ---------- RESET ALL DATA ----------
 // ---------- EXPORT / IMPORT BACKUP ----------
-const ZDATA_STORES = ['fc_subjects','fc_units','fc_cards','fc_history','qz_subjects','qz_units','qz_quizzes','qz_history','ps_subjects','ps_passages','ps_history','pdf_subjects','pdf_units','pdf_files','hb_days','hb_tasks','hb_courses','bk_genres','bk_books','meta'];
+const ZDATA_STORES = ['fc_subjects','fc_units','fc_cards','fc_history','qz_subjects','qz_units','qz_quizzes','qz_history','ps_subjects','ps_passages','ps_history','pdf_subjects','pdf_units','pdf_files','hb_days','hb_tasks','hb_courses','bk_genres','bk_books','sched_days','meta'];
 
 document.getElementById('exportDataBtn').addEventListener('click', async ()=>{
   const btn = document.getElementById('exportDataBtn');
@@ -4464,7 +5009,7 @@ async function zGlobalSearch(query){
   const results = [];
   const fcCards = await zGetAll('fc_cards');
   fcCards.filter(c=>(c.front||'').toLowerCase().includes(q) || (c.back||'').toLowerCase().includes(q))
-    .slice(0,6).forEach(c=>results.push({type:'fc', id:c.id, label:c.front, sub:'Flashcard'}));
+    .slice(0,6).forEach(c=>results.push({type:'fc', id:c.id, label:c.front || '(image card)', sub:'Flashcard'}));
   const qzQuizzes = await zGetAll('qz_quizzes');
   qzQuizzes.filter(x=>(x.question||'').toLowerCase().includes(q))
     .slice(0,6).forEach(x=>results.push({type:'qz', id:x.id, label:x.question, sub:'Quiz question'}));
@@ -4526,17 +5071,27 @@ document.getElementById('globalSearchInput').addEventListener('input', e=>{
 });
 
 // ---------- WEEKLY / MONTHLY REVIEW ----------
-function zDateRangeDates(days){
+let zReviewOffset = 0; // 0 = current period (ending today), 1 = one period back, etc.
+
+// offset shifts the whole window back by (offset * days) days.
+function zDateRangeDates(days, offset){
+  offset = offset || 0;
   const dates = [];
   for(let i=days-1;i>=0;i--){
-    const d = new Date(); d.setDate(d.getDate()-i);
+    const d = new Date(); d.setDate(d.getDate() - i - (offset*days));
     dates.push(zDateStr(d));
   }
   return dates;
 }
 
-async function zBuildReview(days){
-  const dateList = zDateRangeDates(days);
+function zFormatShortDate(dateStr){
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const dt = new Date(y, m-1, d);
+  return dt.toLocaleDateString(undefined, {month:'short', day:'numeric'});
+}
+
+async function zBuildReview(days, offset){
+  const dateList = zDateRangeDates(days, offset);
   const dateSet = new Set(dateList);
   const fcHist = (await zGetAll('fc_history')).filter(h=>dateSet.has(h.date));
   const qzHist = (await zGetAll('qz_history')).filter(h=>dateSet.has(h.date));
@@ -4556,17 +5111,27 @@ async function zBuildReview(days){
     const pages = await zGet('meta', 'bk_day_'+date);
     if(pages) pagesTotal += pages.pages;
   }
-  return { fcSessions, fcAvg, qzSessions, qzAvg, psSessions, psAvg, pomoTotal, pagesTotal };
+  return { fcSessions, fcAvg, qzSessions, qzAvg, psSessions, psAvg, pomoTotal, pagesTotal, dateList };
 }
 
 async function zRenderReview(days){
   const el = document.getElementById('reviewContent');
   if(!el) return;
   el.innerHTML = `<div class="placeholder-empty">Loading…</div>`;
-  const r = await zBuildReview(days);
+  const r = await zBuildReview(days, zReviewOffset);
+
+  const label = document.getElementById('reviewRangeLabel');
+  if(label){
+    label.textContent = zReviewOffset === 0
+      ? `${zFormatShortDate(r.dateList[0])} – Today`
+      : `${zFormatShortDate(r.dateList[0])} – ${zFormatShortDate(r.dateList[r.dateList.length-1])}`;
+  }
+  const nextBtn = document.getElementById('reviewNextBtn');
+  if(nextBtn) nextBtn.disabled = (zReviewOffset === 0);
+
   const totalSessions = r.fcSessions + r.qzSessions + r.psSessions;
   if(!totalSessions && !r.pomoTotal && !r.pagesTotal){
-    el.innerHTML = `<div class="placeholder-empty">No activity logged in this period yet.</div>`;
+    el.innerHTML = `<div class="placeholder-empty">No activity logged in this period.</div>`;
     return;
   }
   const avgParts = [];
@@ -4584,24 +5149,579 @@ async function zRenderReview(days){
     ${avgParts.length ? `<div style="font-size:12px; color:var(--text-muted); margin-top:10px;">Average scores: ${avgParts.join(' · ')}</div>` : ''}`;
 }
 
+function zCurrentReviewDays(){
+  const activeRange = document.querySelector('#reviewRangeToggle .mode-btn.active');
+  return activeRange ? Number(activeRange.dataset.range) : 7;
+}
+
 document.getElementById('reviewRangeToggle').addEventListener('click', e=>{
   const btn = e.target.closest('.mode-btn');
   if(!btn) return;
   document.querySelectorAll('#reviewRangeToggle .mode-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  zReviewOffset = 0;
   zRenderReview(Number(btn.dataset.range));
+});
+
+document.getElementById('reviewPrevBtn').addEventListener('click', ()=>{
+  zReviewOffset += 1;
+  zRenderReview(zCurrentReviewDays());
+});
+document.getElementById('reviewNextBtn').addEventListener('click', ()=>{
+  if(zReviewOffset === 0) return;
+  zReviewOffset -= 1;
+  zRenderReview(zCurrentReviewDays());
 });
 
 window.addEventListener('zenith:view', e=>{
   if(e.detail==='dashboard'){
     zRenderExamCountdown();
-    const activeRange = document.querySelector('#reviewRangeToggle .mode-btn.active');
-    zRenderReview(activeRange ? Number(activeRange.dataset.range) : 7);
+    zRenderReview(zCurrentReviewDays());
   }
 });
 
-document.addEventListener('DOMContentLoaded', ()=>{ FC.init(); QZ.init(); PS.init(); PM.init(); PDFM.init(); HB.init(); BK.init(); zRefreshStudyStreakPill(); zRenderExamCountdown(); zRenderReview(7); });
-if(document.readyState !== 'loading'){ FC.init(); QZ.init(); PS.init(); PM.init(); PDFM.init(); HB.init(); BK.init(); zRefreshStudyStreakPill(); zRenderExamCountdown(); zRenderReview(7); }
+// ---------- OVERVIEW (charts across weeks/months) ----------
+let zOvOffset = 0;
+let zOvCharts = {};
+
+function zThemeColor(varName){
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+}
+
+// Builds unitId -> subjectName lookup maps for each study type, so history rows
+// (which only store unitId/passageId) can be grouped by subject.
+async function zOvSubjectMaps(){
+  const [fcUnits, fcSubjects, qzUnits, qzSubjects, psPassages, psSubjects] = await Promise.all([
+    zGetAll('fc_units'), zGetAll('fc_subjects'), zGetAll('qz_units'), zGetAll('qz_subjects'),
+    zGetAll('ps_passages'), zGetAll('ps_subjects')
+  ]);
+  const fcSubjName = Object.fromEntries(fcSubjects.map(s=>[s.id, s.name]));
+  const qzSubjName = Object.fromEntries(qzSubjects.map(s=>[s.id, s.name]));
+  const psSubjName = Object.fromEntries(psSubjects.map(s=>[s.id, s.name]));
+  const fcUnitToSubj = Object.fromEntries(fcUnits.map(u=>[u.id, fcSubjName[u.subjectId]]));
+  const qzUnitToSubj = Object.fromEntries(qzUnits.map(u=>[u.id, qzSubjName[u.subjectId]]));
+  const psToSubj = Object.fromEntries(psPassages.map(p=>[p.id, psSubjName[p.subjectId]]));
+  return { fcUnitToSubj, qzUnitToSubj, psToSubj };
+}
+
+async function zOvDayData(dateList){
+  // Returns per-day arrays aligned with dateList, for each metric.
+  const fcHist = await zGetAll('fc_history');
+  const qzHist = await zGetAll('qz_history');
+  const psHist = await zGetAll('ps_history');
+  const settings = await zGet('meta', 'hb_settings') || {};
+
+  const fcByDate = {}, qzByDate = {}, psByDate = {};
+  fcHist.forEach(h=>{ (fcByDate[h.date] ||= []).push(h); });
+  qzHist.forEach(h=>{ (qzByDate[h.date] ||= []).push(h); });
+  psHist.forEach(h=>{ (psByDate[h.date] ||= []).push(h); });
+
+  const fcSessions=[], qzSessions=[], psSessions=[], accByDay=[], pomoByDay=[], pagesByDay=[],
+        habitPctByDay=[], sleepPctByDay=[], waterPctByDay=[], prayerPctByDay=[], hygienePctByDay=[], quranPctByDay=[],
+        activeByDay=[], hourCounts = new Array(24).fill(0);
+
+  for(const date of dateList){
+    const fcs = fcByDate[date]||[], qzs = qzByDate[date]||[], pss = psByDate[date]||[];
+    fcSessions.push(fcs.length); qzSessions.push(qzs.length); psSessions.push(pss.length);
+
+    [...fcs, ...qzs, ...pss].forEach(h=>{ if(h.hour != null) hourCounts[h.hour]++; });
+
+    const scores = [
+      ...fcs.map(h=>h.total? (h.knew/h.total*100) : null),
+      ...qzs.map(h=>h.total? (h.correct/h.total*100) : null),
+      ...pss.map(h=>h.score),
+    ].filter(v=>v!=null);
+    accByDay.push(scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null);
+
+    const pomo = await zGet('meta', 'pomo_day_'+date);
+    const pomoCount = pomo ? pomo.count : 0;
+    pomoByDay.push(pomoCount);
+    const pages = await zGet('meta', 'bk_day_'+date);
+    const pagesCount = pages ? pages.pages : 0;
+    pagesByDay.push(pagesCount);
+
+    const hbDay = await zGet('hb_days', date);
+    let habitActive = false;
+    if(hbDay){
+      const sleepPct = (settings.sleepGoalHours && hbDay.sleepHours<=16) ? Math.min(100, Math.round((hbDay.sleepHours/settings.sleepGoalHours)*100)) : 0;
+      const waterPct = settings.waterGoal ? Math.min(100, Math.round((hbDay.water/settings.waterGoal)*100)) : 0;
+      const prayerPct = Math.round((Object.values(hbDay.prayers||{}).filter(Boolean).length/5)*100);
+      const hygienePct = Math.round((Object.values(hbDay.hygiene||{}).filter(Boolean).length/2)*100);
+      const quranPct = hbDay.quran ? 100 : 0;
+      sleepPctByDay.push(sleepPct); waterPctByDay.push(waterPct); prayerPctByDay.push(prayerPct);
+      hygienePctByDay.push(hygienePct); quranPctByDay.push(quranPct);
+      habitPctByDay.push(Math.round((sleepPct+waterPct+prayerPct+hygienePct+quranPct)/5));
+      habitActive = true;
+    } else {
+      sleepPctByDay.push(null); waterPctByDay.push(null); prayerPctByDay.push(null);
+      hygienePctByDay.push(null); quranPctByDay.push(null); habitPctByDay.push(null);
+    }
+    activeByDay.push(!!(fcs.length || qzs.length || pss.length || pomoCount || pagesCount || habitActive));
+  }
+  return { fcSessions, qzSessions, psSessions, accByDay, pomoByDay, pagesByDay, habitPctByDay,
+    sleepPctByDay, waterPctByDay, prayerPctByDay, hygienePctByDay, quranPctByDay, activeByDay, hourCounts,
+    fcHistRaw: fcHist, qzHistRaw: qzHist, psHistRaw: psHist };
+}
+
+function zOvSum(arr){ return arr.reduce((a,b)=>a+(b||0),0); }
+function zOvAvg(arr){ const v = arr.filter(x=>x!=null); return v.length ? Math.round(v.reduce((a,b)=>a+b,0)/v.length) : null; }
+
+// Reconstructs a "consecutive active days ending on this date" streak value per day,
+// using a short lookback buffer so the streak at the start of the window is still correct.
+function zOvStreakSeries(dateList, activeByDay){
+  const lookback = 60;
+  const bufferStart = new Date(dateList[0]);
+  bufferStart.setDate(bufferStart.getDate() - lookback);
+  return dateList.map((_, i)=>{
+    let streak = 0;
+    for(let j=i; j>=0; j--){
+      if(activeByDay[j]) streak++; else break;
+    }
+    // If the window starts mid-streak we can't see further back without more data;
+    // that's an acceptable approximation rather than another full DB pass per day.
+    return streak;
+  });
+}
+
+function zOvDeltaHtml(label, curVal, prevVal, suffix){
+  suffix = suffix || '';
+  let changeHtml = '';
+  if(prevVal != null && curVal != null){
+    const diff = curVal - prevVal;
+    if(Math.abs(diff) < 0.5){
+      changeHtml = `<span class="ov-delta-change flat">No change</span>`;
+    } else {
+      const cls = diff > 0 ? 'up' : 'down';
+      const arrow = diff > 0 ? '↑' : '↓';
+      changeHtml = `<span class="ov-delta-change ${cls}">${arrow} ${Math.abs(Math.round(diff))}${suffix} vs last period</span>`;
+    }
+  }
+  return `
+    <div class="ov-delta-card">
+      <div class="ov-delta-label">${label}</div>
+      <div class="ov-delta-value">${curVal!=null ? curVal+suffix : '—'}</div>
+      ${changeHtml}
+    </div>`;
+}
+
+function zOvDestroyCharts(){
+  Object.values(zOvCharts).forEach(c=>c && c.destroy());
+  zOvCharts = {};
+}
+
+function zOvMakeChart(canvasId, type, labels, datasets, opts){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return null;
+  if(!window.Chart){
+    const wrap = canvas.closest('.ov-chart-wrap');
+    if(wrap) wrap.innerHTML = `<div class="ov-chart-empty">Charts need an internet connection to load the first time.</div>`;
+    return null;
+  }
+  const textMuted = zThemeColor('--text-muted');
+  const border = zThemeColor('--border');
+  return new Chart(canvas, {
+    type,
+    data: { labels, datasets },
+    options: Object.assign({
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display: datasets.length>1, labels:{ color:textMuted, font:{size:11}, boxWidth:10 } } },
+      scales:{
+        x:{ ticks:{ color:textMuted, font:{size:10}, maxRotation:0, autoSkip:true, maxTicksLimit:7 }, grid:{ color:border, display:false } },
+        y:{ ticks:{ color:textMuted, font:{size:10} }, grid:{ color:border }, beginAtZero:true }
+      }
+    }, opts||{})
+  });
+}
+
+// A horizontal reference-line dataset for goal lines (rendered as a flat dashed line).
+function zOvGoalDataset(value, len, label){
+  return { label, data:new Array(len).fill(value), borderColor:zThemeColor('--text-muted'), borderDash:[5,5], pointRadius:0, borderWidth:1.5, fill:false, tension:0 };
+}
+
+async function zRenderOverview(days){
+  const el = document.getElementById('ovContent');
+  if(!el) return;
+
+  const dateList = zDateRangeDates(days, zOvOffset);
+  const prevDateList = zDateRangeDates(days, zOvOffset+1);
+
+  const label = document.getElementById('ovRangeLabel');
+  if(label){
+    label.textContent = zOvOffset === 0
+      ? `${zFormatShortDate(dateList[0])} – Today`
+      : `${zFormatShortDate(dateList[0])} – ${zFormatShortDate(dateList[dateList.length-1])}`;
+  }
+  const nextBtn = document.getElementById('ovNextBtn');
+  if(nextBtn) nextBtn.disabled = (zOvOffset === 0);
+
+  el.innerHTML = `<div class="placeholder-empty">Loading…</div>`;
+
+  const cur = await zOvDayData(dateList);
+  const prev = await zOvDayData(prevDateList);
+  const goals = await zGet('meta', 'zenith_goals') || {};
+  const maps = await zOvSubjectMaps();
+  zOvDestroyCharts();
+
+  const totalSessionsCur = zOvSum(cur.fcSessions)+zOvSum(cur.qzSessions)+zOvSum(cur.psSessions);
+  const totalSessionsPrev = zOvSum(prev.fcSessions)+zOvSum(prev.qzSessions)+zOvSum(prev.psSessions);
+  const accCur = zOvAvg(cur.accByDay), accPrev = zOvAvg(prev.accByDay);
+  const pomoCur = zOvSum(cur.pomoByDay), pomoPrev = zOvSum(prev.pomoByDay);
+  const pagesCur = zOvSum(cur.pagesByDay), pagesPrev = zOvSum(prev.pagesByDay);
+  const habitCur = zOvAvg(cur.habitPctByDay), habitPrev = zOvAvg(prev.habitPctByDay);
+
+  const dayLabels = dateList.map(zFormatShortDate);
+  const accentColor = zThemeColor('--accent');
+  const accent2Color = zThemeColor('--accent-2');
+  const palette = [accentColor, accent2Color, '#7CC48F', '#E38686', '#8B99B8', '#D4A24C'];
+
+  // ----- Best/worst day -----
+  const dayScores = dateList.map((date,i)=>{
+    const sessions = cur.fcSessions[i]+cur.qzSessions[i]+cur.psSessions[i];
+    const acc = cur.accByDay[i];
+    return { date, i, sessions, acc, combined: sessions + (acc!=null ? acc/100 : 0) };
+  }).filter(d=>d.sessions>0);
+  let bestWorstHtml = '';
+  if(dayScores.length){
+    const best = dayScores.reduce((a,b)=>b.combined>a.combined?b:a);
+    const worst = dayScores.reduce((a,b)=>b.combined<a.combined?b:a);
+    bestWorstHtml = `
+      <div class="ov-chart-card">
+        <div class="ov-chart-title">Best &amp; worst day</div>
+        <div style="font-size:12.5px; line-height:1.7;">
+          <div>🏆 <b>${zFormatShortDate(best.date)}</b> — ${best.sessions} session${best.sessions===1?'':'s'}${best.acc!=null?`, ${best.acc}% avg`:''}</div>
+          ${dayScores.length>1 ? `<div style="color:var(--text-muted);">📉 <b>${zFormatShortDate(worst.date)}</b> — ${worst.sessions} session${worst.sessions===1?'':'s'}${worst.acc!=null?`, ${worst.acc}% avg`:''}</div>` : ''}
+        </div>
+      </div>`;
+  }
+
+  // ----- Subject breakdown -----
+  const subjSessions = {}, subjScoreSum = {}, subjScoreCount = {};
+  function addSubj(name, correct, total){
+    if(!name) return;
+    subjSessions[name] = (subjSessions[name]||0) + 1;
+    if(total){ subjScoreSum[name] = (subjScoreSum[name]||0) + (correct/total*100); subjScoreCount[name] = (subjScoreCount[name]||0)+1; }
+  }
+  cur.fcHistRaw.filter(h=>dateList.includes(h.date)).forEach(h=>addSubj(maps.fcUnitToSubj[h.unitId], h.knew, h.total));
+  cur.qzHistRaw.filter(h=>dateList.includes(h.date)).forEach(h=>addSubj(maps.qzUnitToSubj[h.unitId], h.correct, h.total));
+  cur.psHistRaw.filter(h=>dateList.includes(h.date)).forEach(h=>addSubj(maps.psToSubj[h.passageId], h.score, 100));
+  const subjNames = Object.keys(subjSessions);
+
+  // ----- Streak history -----
+  const streakSeries = zOvStreakSeries(dateList, cur.activeByDay);
+
+  el.innerHTML = `
+    <div class="ov-delta-grid">
+      ${zOvDeltaHtml('Study sessions', totalSessionsCur, totalSessionsPrev)}
+      ${zOvDeltaHtml('Avg accuracy', accCur, accPrev, '%')}
+      ${zOvDeltaHtml('Pomodoros', pomoCur, pomoPrev)}
+      ${zOvDeltaHtml('Pages read', pagesCur, pagesPrev)}
+      ${zOvDeltaHtml('Habit consistency', habitCur, habitPrev, '%')}
+    </div>
+
+    ${bestWorstHtml}
+
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Study sessions per day</div>
+      <div class="ov-chart-wrap">${totalSessionsCur ? '<canvas id="ovChartSessions"></canvas>' : '<div class="ov-chart-empty">No study sessions logged in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Accuracy trend</div>
+      <div class="ov-chart-wrap">${cur.accByDay.some(v=>v!=null) ? '<canvas id="ovChartAccuracy"></canvas>' : '<div class="ov-chart-empty">No scored sessions in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Accuracy by subject</div>
+      <div class="ov-chart-wrap">${subjNames.length ? '<canvas id="ovChartSubjects"></canvas>' : '<div class="ov-chart-empty">No subject data in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Focus time (pomodoros)${goals.pomoTarget ? ` <span style="color:var(--text-muted); font-weight:400;">· goal ${goals.pomoTarget}/day</span>` : ''}</div>
+      <div class="ov-chart-wrap">${pomoCur ? '<canvas id="ovChartPomo"></canvas>' : '<div class="ov-chart-empty">No pomodoros logged in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Reading pages per day${goals.pagesTarget ? ` <span style="color:var(--text-muted); font-weight:400;">· goal ${goals.pagesTarget}/day</span>` : ''}</div>
+      <div class="ov-chart-wrap">${pagesCur ? '<canvas id="ovChartPages"></canvas>' : '<div class="ov-chart-empty">No reading logged in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Habits breakdown</div>
+      <div class="ov-chart-wrap">${cur.habitPctByDay.some(v=>v!=null) ? '<canvas id="ovChartHabits"></canvas>' : '<div class="ov-chart-empty">No habit logs in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Streak history</div>
+      <div class="ov-chart-wrap">${streakSeries.some(v=>v>0) ? '<canvas id="ovChartStreak"></canvas>' : '<div class="ov-chart-empty">No streak activity in this period.</div>'}</div>
+    </div>
+    <div class="ov-chart-card">
+      <div class="ov-chart-title">Time of day you study</div>
+      <div class="ov-chart-wrap">${cur.hourCounts.some(v=>v>0) ? '<canvas id="ovChartHourly"></canvas>' : '<div class="ov-chart-empty">Time-of-day tracking just started — this fills in as you study.</div>'}</div>
+    </div>`;
+
+  if(totalSessionsCur){
+    zOvCharts.sessions = zOvMakeChart('ovChartSessions', 'bar', dayLabels, [
+      { label:'Flashcards', data:cur.fcSessions, backgroundColor:accentColor, stack:'s' },
+      { label:'Quizzes', data:cur.qzSessions, backgroundColor:accent2Color, stack:'s' },
+      { label:'Passages', data:cur.psSessions, backgroundColor:zThemeColor('--text-muted'), stack:'s' },
+    ], { scales:{ x:{ stacked:true, ticks:{ color:zThemeColor('--text-muted'), font:{size:10}, maxRotation:0, autoSkip:true, maxTicksLimit:7 }, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, ticks:{color:zThemeColor('--text-muted'), font:{size:10}}, grid:{color:zThemeColor('--border')} } } });
+  }
+  if(cur.accByDay.some(v=>v!=null)){
+    zOvCharts.accuracy = zOvMakeChart('ovChartAccuracy', 'line', dayLabels, [
+      { label:'Accuracy %', data:cur.accByDay, borderColor:accentColor, backgroundColor:accentColor, tension:0.3, spanGaps:true, pointRadius:3 },
+    ], { scales:{ y:{ min:0, max:100, ticks:{color:zThemeColor('--text-muted')}, grid:{color:zThemeColor('--border')} } } });
+  }
+  if(subjNames.length){
+    zOvCharts.subjects = zOvMakeChart('ovChartSubjects', 'bar', subjNames, [
+      { label:'Avg accuracy %', data:subjNames.map(n=>subjScoreCount[n] ? Math.round(subjScoreSum[n]/subjScoreCount[n]) : 0), backgroundColor:subjNames.map((_,i)=>palette[i%palette.length]) },
+    ], { indexAxis:'y', scales:{ x:{ min:0, max:100, ticks:{color:zThemeColor('--text-muted')}, grid:{color:zThemeColor('--border')} }, y:{ ticks:{color:zThemeColor('--text-muted')}, grid:{display:false} } } });
+  }
+  if(pomoCur){
+    const ds = [{ label:'Pomodoros', data:cur.pomoByDay, backgroundColor:accentColor }];
+    if(goals.pomoTarget) ds.push(zOvGoalDataset(goals.pomoTarget, dateList.length, 'Goal'));
+    zOvCharts.pomo = zOvMakeChart('ovChartPomo', 'bar', dayLabels, ds);
+  }
+  if(pagesCur){
+    const ds = [{ label:'Pages', data:cur.pagesByDay, backgroundColor:accent2Color }];
+    if(goals.pagesTarget) ds.push(zOvGoalDataset(goals.pagesTarget, dateList.length, 'Goal'));
+    zOvCharts.pages = zOvMakeChart('ovChartPages', 'bar', dayLabels, ds);
+  }
+  if(cur.habitPctByDay.some(v=>v!=null)){
+    zOvCharts.habits = zOvMakeChart('ovChartHabits', 'line', dayLabels, [
+      { label:'Sleep', data:cur.sleepPctByDay, borderColor:palette[0], backgroundColor:palette[0], tension:0.3, spanGaps:true, pointRadius:2 },
+      { label:'Water', data:cur.waterPctByDay, borderColor:palette[1], backgroundColor:palette[1], tension:0.3, spanGaps:true, pointRadius:2 },
+      { label:'Prayer', data:cur.prayerPctByDay, borderColor:palette[2], backgroundColor:palette[2], tension:0.3, spanGaps:true, pointRadius:2 },
+      { label:'Hygiene', data:cur.hygienePctByDay, borderColor:palette[3], backgroundColor:palette[3], tension:0.3, spanGaps:true, pointRadius:2 },
+      { label:'Quran', data:cur.quranPctByDay, borderColor:palette[4], backgroundColor:palette[4], tension:0.3, spanGaps:true, pointRadius:2 },
+    ], { scales:{ y:{ min:0, max:100, ticks:{color:zThemeColor('--text-muted')}, grid:{color:zThemeColor('--border')} } } });
+  }
+  if(streakSeries.some(v=>v>0)){
+    zOvCharts.streak = zOvMakeChart('ovChartStreak', 'line', dayLabels, [
+      { label:'Active-day streak', data:streakSeries, borderColor:accentColor, backgroundColor:accentColor, tension:0.2, pointRadius:3, stepped:false },
+    ]);
+  }
+  if(cur.hourCounts.some(v=>v>0)){
+    const hourLabels = Array.from({length:24}, (_,h)=> h===0?'12am':h<12?h+'am':h===12?'12pm':(h-12)+'pm');
+    zOvCharts.hourly = zOvMakeChart('ovChartHourly', 'bar', hourLabels, [
+      { label:'Sessions', data:cur.hourCounts, backgroundColor:accentColor },
+    ], { scales:{ x:{ ticks:{ color:zThemeColor('--text-muted'), font:{size:9}, maxRotation:0, autoSkip:true, maxTicksLimit:8 }, grid:{display:false} } } });
+  }
+}
+
+function zOvCurrentDays(){
+  const activeRange = document.querySelector('#ovRangeToggle .mode-btn.active');
+  return activeRange ? Number(activeRange.dataset.range) : 7;
+}
+
+document.getElementById('ovRangeToggle').addEventListener('click', e=>{
+  const btn = e.target.closest('.mode-btn');
+  if(!btn) return;
+  document.querySelectorAll('#ovRangeToggle .mode-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  zOvOffset = 0;
+  zRenderOverview(Number(btn.dataset.range));
+});
+document.getElementById('ovPrevBtn').addEventListener('click', ()=>{
+  zOvOffset += 1;
+  zRenderOverview(zOvCurrentDays());
+});
+document.getElementById('ovNextBtn').addEventListener('click', ()=>{
+  if(zOvOffset === 0) return;
+  zOvOffset -= 1;
+  zRenderOverview(zOvCurrentDays());
+});
+window.addEventListener('zenith:view', e=>{
+  if(e.detail==='overview') zRenderOverview(zOvCurrentDays());
+});
+window.addEventListener('zenith:chartready', ()=>{
+  if(document.getElementById('view-overview')?.classList.contains('active')){
+    zRenderOverview(zOvCurrentDays());
+  }
+});
+
+// ---------- SCHEDULE (daily agenda) ----------
+let zSchedOffset = 0; // days from today; 0 = today, 1 = tomorrow, -1 = yesterday
+
+function zSchedDateForOffset(offset){
+  const d = new Date(); d.setDate(d.getDate() + offset);
+  return zDateStr(d);
+}
+function zSchedDateLabel(offset){
+  if(offset === 0) return 'Today';
+  if(offset === 1) return 'Tomorrow';
+  if(offset === -1) return 'Yesterday';
+  return zFormatShortDate(zSchedDateForOffset(offset));
+}
+
+async function zSchedGetDay(date){
+  const day = await zGet('sched_days', date);
+  return day || { date, items: [] };
+}
+async function zSchedSaveDay(day){
+  await zPut('sched_days', day);
+}
+
+async function zRenderSchedule(){
+  const label = document.getElementById('schedDateLabel');
+  if(label) label.textContent = zSchedDateLabel(zSchedOffset);
+
+  const el = document.getElementById('schedContent');
+  if(!el) return;
+  const date = zSchedDateForOffset(zSchedOffset);
+  const day = await zSchedGetDay(date);
+
+  if(!day.items.length){
+    el.innerHTML = `<div class="placeholder-empty">Nothing planned for ${zSchedOffset===0?'today':zSchedDateLabel(zSchedOffset).toLowerCase()} yet.</div>`;
+    return;
+  }
+
+  const linkIcons = { fc:'📇', qz:'❓', ps:'📖' };
+  const linkLabels = { fc:'Flashcards', qz:'Quiz', ps:'Passages' };
+
+  el.innerHTML = `
+    <div style="overflow-x:auto;">
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th class="sched-th-check"></th>
+          <th class="sched-th-text">Item</th>
+          <th class="sched-th-link">Linked to</th>
+          <th class="sched-th-order"></th>
+          <th class="sched-th-del"></th>
+        </tr>
+      </thead>
+      <tbody>
+        ${day.items.map((item, i)=>`
+        <tr class="sched-row ${item.done?'done':''}" data-idx="${i}">
+          <td class="sched-td-check"><input type="checkbox" class="sched-check" ${item.done?'checked':''}></td>
+          <td class="sched-td-text ${item.link?'sched-linkable':''}">${esc(item.text)}</td>
+          <td class="sched-td-link ${item.link?'sched-linkable':''}">${item.link ? `<span class="sched-link-tag">${linkIcons[item.link.type]||''} ${esc(linkLabels[item.link.type]||'')}${item.link.name?' · '+esc(item.link.name):''}</span>` : '<span class="sched-link-tag-empty">—</span>'}</td>
+          <td class="sched-td-order">
+            <div class="sched-reorder">
+              <button class="sched-up" ${i===0?'disabled':''} aria-label="Move up">▲</button>
+              <button class="sched-down" ${i===day.items.length-1?'disabled':''} aria-label="Move down">▼</button>
+            </div>
+          </td>
+          <td class="sched-td-del"><button class="sched-del" aria-label="Delete">✕</button></td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
+    </div>`;
+
+  el.querySelectorAll('.sched-row').forEach(row=>{
+    const idx = Number(row.dataset.idx);
+    row.querySelector('.sched-check').addEventListener('change', async e=>{
+      day.items[idx].done = e.target.checked;
+      await zSchedSaveDay(day);
+      zRenderSchedule();
+    });
+    row.querySelector('.sched-up').addEventListener('click', async ()=>{
+      if(idx===0) return;
+      [day.items[idx-1], day.items[idx]] = [day.items[idx], day.items[idx-1]];
+      await zSchedSaveDay(day);
+      zRenderSchedule();
+    });
+    row.querySelector('.sched-down').addEventListener('click', async ()=>{
+      if(idx===day.items.length-1) return;
+      [day.items[idx+1], day.items[idx]] = [day.items[idx], day.items[idx+1]];
+      await zSchedSaveDay(day);
+      zRenderSchedule();
+    });
+    row.querySelector('.sched-del').addEventListener('click', async ()=>{
+      day.items.splice(idx,1);
+      await zSchedSaveDay(day);
+      zRenderSchedule();
+    });
+    const item = day.items[idx];
+    if(item.link){
+      row.querySelectorAll('.sched-linkable').forEach(cell=>{
+        cell.addEventListener('click', async ()=>{
+          document.querySelector('.nav-item[data-view="study"]').click();
+          if(item.link.type==='fc'){
+            document.querySelector('.subnav-btn[data-study="flashcards"]').click();
+            await FC.locateUnit(item.link.id);
+          } else if(item.link.type==='qz'){
+            document.querySelector('.subnav-btn[data-study="quizzes"]').click();
+            await QZ.locateUnit(item.link.id);
+          } else if(item.link.type==='ps'){
+            document.querySelector('.subnav-btn[data-study="passages"]').click();
+            await PS.locatePassage(item.link.id);
+          }
+        });
+      });
+    }
+  });
+}
+
+async function zSchedShowAddModal(){
+  const [fcSubjects, qzSubjects, psSubjects] = await Promise.all([
+    zGetAll('fc_subjects'), zGetAll('qz_subjects'), zGetAll('ps_subjects')
+  ]);
+  const [fcUnits, qzUnits] = await Promise.all([zGetAll('fc_units'), zGetAll('qz_units')]);
+
+  const bodyHtml = `
+    <div class="field-label">What's the plan?</div>
+    <input class="field-input" id="schedItemText" placeholder="e.g. Review Algebra flashcards">
+    <div class="field-label" style="margin-top:10px;">Link to (optional)</div>
+    <select class="field-input" id="schedLinkType">
+      <option value="">No link — just a note</option>
+      <option value="fc">Flashcard unit</option>
+      <option value="qz">Quiz unit</option>
+      <option value="ps">Passage subject</option>
+    </select>
+    <select class="field-input" id="schedLinkTarget" style="display:none; margin-top:8px;"></select>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="schedCancel">Cancel</button>
+      <button class="btn-accent" id="schedSave">Add</button>
+    </div>`;
+
+  openModal('Add to schedule', bodyHtml, backdrop=>{
+    const typeSel = backdrop.querySelector('#schedLinkType');
+    const targetSel = backdrop.querySelector('#schedLinkTarget');
+    const subjName = (subjects, id)=> (subjects.find(s=>s.id===id)||{}).name || '';
+
+    typeSel.addEventListener('change', ()=>{
+      if(typeSel.value==='fc'){
+        targetSel.innerHTML = fcUnits.map(u=>`<option value="${u.id}">${esc(subjName(fcSubjects,u.subjectId))} · ${esc(u.name)}</option>`).join('');
+        targetSel.style.display = fcUnits.length ? '' : 'none';
+      } else if(typeSel.value==='qz'){
+        targetSel.innerHTML = qzUnits.map(u=>`<option value="${u.id}">${esc(subjName(qzSubjects,u.subjectId))} · ${esc(u.name)}</option>`).join('');
+        targetSel.style.display = qzUnits.length ? '' : 'none';
+      } else if(typeSel.value==='ps'){
+        targetSel.innerHTML = psSubjects.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
+        targetSel.style.display = psSubjects.length ? '' : 'none';
+      } else {
+        targetSel.style.display = 'none';
+      }
+    });
+
+    backdrop.querySelector('#schedCancel').addEventListener('click', closeModal);
+    backdrop.querySelector('#schedSave').addEventListener('click', async ()=>{
+      const text = backdrop.querySelector('#schedItemText').value.trim();
+      if(!text){ zShowError('Give this item some text.'); return; }
+      let link = null;
+      const type = typeSel.value;
+      if(type && targetSel.value){
+        const id = Number(targetSel.value);
+        let name = '';
+        if(type==='fc'){ const u = fcUnits.find(x=>x.id===id); name = u ? `${subjName(fcSubjects,u.subjectId)} · ${u.name}` : ''; }
+        else if(type==='qz'){ const u = qzUnits.find(x=>x.id===id); name = u ? `${subjName(qzSubjects,u.subjectId)} · ${u.name}` : ''; }
+        else if(type==='ps'){ name = subjName(psSubjects, id); }
+        link = { type, id, name };
+      }
+      const date = zSchedDateForOffset(zSchedOffset);
+      const day = await zSchedGetDay(date);
+      day.items.push({ text, link, done:false });
+      await zSchedSaveDay(day);
+      closeModal();
+      zRenderSchedule();
+    });
+  });
+}
+
+document.getElementById('schedAddBtn').addEventListener('click', zSchedShowAddModal);
+document.getElementById('schedPrevBtn').addEventListener('click', ()=>{ zSchedOffset -= 1; zRenderSchedule(); });
+document.getElementById('schedNextBtn').addEventListener('click', ()=>{ zSchedOffset += 1; zRenderSchedule(); });
+window.addEventListener('zenith:view', e=>{
+  if(e.detail==='schedule') zRenderSchedule();
+});
+
+document.addEventListener('DOMContentLoaded', ()=>{ FC.init(); QZ.init(); PS.init(); PM.init(); PDFM.init(); HB.init(); BK.init(); zRefreshStudyStreakPill(); zRenderExamCountdown(); zRenderReview(7); zRenderDashStreakChart(); });
+if(document.readyState !== 'loading'){ FC.init(); QZ.init(); PS.init(); PM.init(); PDFM.init(); HB.init(); BK.init(); zRefreshStudyStreakPill(); zRenderExamCountdown(); zRenderReview(7); zRenderDashStreakChart(); }
 
 window.addEventListener('zenith:view', e=>{
   if(e.detail==='dashboard') zRefreshStudyStreakPill();
